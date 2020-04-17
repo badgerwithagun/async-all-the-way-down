@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="54e89a77-20da-472f-a94e-5e989a65aa14" name="Default Changelist" comment="" />
+    <list default="true" id="54e89a77-20da-472f-a94e-5e989a65aa14" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gruelbox/asyncalltheway/DemoResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gruelbox/asyncalltheway/DemoResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gruelbox/asyncalltheway/persistence/PersistenceModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gruelbox/asyncalltheway/persistence/PersistenceModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gruelbox/asyncalltheway/persistence/jooq/tables/Stuff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gruelbox/asyncalltheway/persistence/jooq/tables/Stuff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gruelbox/asyncalltheway/persistence/jooq/tables/daos/StuffDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gruelbox/asyncalltheway/persistence/jooq/tables/daos/StuffDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gruelbox/asyncalltheway/persistence/jooq/tables/mappers/RowMappers.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V1_initial.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V1_initial.sql" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +33,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
       <MavenImportingSettings>
@@ -34,10 +47,13 @@
     </option>
   </component>
   <component name="ProjectId" id="1afw3zMtoxGJx2lhJofr2xMeu7x" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/test/resources" />
     <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.import" />
   </component>
@@ -61,7 +77,25 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.DemoTest">
+    <configuration name="DemoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="async-all-the-way-down" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.gruelbox.asyncalltheway.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.gruelbox.asyncalltheway" />
+      <option name="MAIN_CLASS_NAME" value="com.gruelbox.asyncalltheway.DemoTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea -javaagent:C:\Users\Graham\.m2\repository\com\ea\async\ea-async\1.2.3\ea-async-1.2.3.jar" />
+      <option name="PARAMETERS" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="DemoTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="async-all-the-way-down" />
       <extension name="coverage">
@@ -78,11 +112,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="JUnit.DemoTest" />
+      <item itemvalue="JUnit.DemoTest.test" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.DemoTest" />
         <item itemvalue="JUnit.DemoTest.test" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="StructureViewFactory">
+    <option name="ACTIVE_ACTIONS" value=",ALPHA_COMPARATOR" />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -94,13 +136,29 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/gruelbox/asyncalltheway/persistence/PersistenceModule.java</url>
-          <line>42</line>
-          <option name="timeStamp" value="4" />
+          <url>jar://$MAVEN_REPOSITORY$/io/github/jklingsporn/vertx-jooq-completablefuture-async/5.1.0/vertx-jooq-completablefuture-async-5.1.0-sources.jar!/io/github/jklingsporn/vertx/jooq/completablefuture/async/AsyncCompletableFutureGenericQueryExecutor.java</url>
+          <line>114</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/org/flywaydb/flyway-core/6.3.3/flyway-core-6.3.3-sources.jar!/org/flywaydb/core/Flyway.java</url>
+          <line>578</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
