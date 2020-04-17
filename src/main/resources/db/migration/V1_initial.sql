@@ -1,0 +1,4 @@
+CREATE TABLE Stuff (
+  id VARCHAR(34) PRIMARY KEY,
+  data VARCHAR(100)
+)

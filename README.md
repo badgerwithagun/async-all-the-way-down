@@ -1,0 +1,13 @@
+# Async all the way down
+
+How to start the Async all the way down application
+---
+
+1. Run `mvn clean install` to build your application
+1. Start application with `java -jar target/async-all-the-way-down-1.0-SNAPSHOT.jar server config.yml`
+1. To check that your application is running enter url `http://localhost:8080`
+
+Health Check
+---
+
+To see your applications health enter url `http://localhost:8081/healthcheck`

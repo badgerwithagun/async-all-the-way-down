@@ -1,0 +1,45 @@
+#jerseyClient:
+#  timeout: 10000ms                 # Max idle time
+#  connectionTimeout: 5000ms        # Max time to wait for a connection
+#  connectionRequestTimeout: 2000ms # Max time to wait for a connection from the pool
+#  gzipEnabledForRequests: false
+#  chunkedEncodingEnabled: false
+
+server:
+  type: simple
+  applicationContextPath: /
+  adminContextPath: /admin
+  rootPath: /
+  connector:
+    type: http
+    port: 8081
+  minThreads: 4
+  maxThreads: 16
+
+persistence:
+  database:
+    driverClass: org.postgresql.Driver
+    user: user
+    password: password
+    url: jdbc:postgresql://server-name:server-port/database-name
+    defaultTransactionIsolation: READ_COMMITTED
+    maxWaitForConnection: 1s
+    validationQuery: "SELECT 1"
+    validationQueryTimeout: 3s
+    validationInterval: 30s
+    initialSize: 8
+    minSize: 8
+    maxSize: 36
+    checkConnectionWhileIdle: true
+    checkConnectionOnConnect: true
+    checkConnectionOnBorrow: false
+    checkConnectionOnReturn: false
+    evictionInterval: 10s
+    minIdleTime: 1 minute
+    maxConnectionAge: 4 hours
+  flyway:
+    metaDataTableName: schema_version
+    sqlMigrationSeparator: "_"
+
+logging:
+  level: INFO
