@@ -13,8 +13,8 @@ server:
   connector:
     type: http
     port: 8081
-  minThreads: 4
-  maxThreads: 16
+  gzip:
+    enabled: false
 
 persistence:
   database:

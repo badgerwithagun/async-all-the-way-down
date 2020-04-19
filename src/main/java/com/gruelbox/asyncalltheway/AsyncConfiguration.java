@@ -1,8 +1,8 @@
 package com.gruelbox.asyncalltheway;
 
 import com.google.inject.Binder;
-import com.gruelbox.asyncalltheway.persistence.HasPersistenceConfiguration;
-import com.gruelbox.asyncalltheway.persistence.PersistenceConfiguration;
+import com.gruelbox.asyncalltheway.integration.persistence.HasPersistenceConfiguration;
+import com.gruelbox.asyncalltheway.integration.persistence.PersistenceConfiguration;
 import io.dropwizard.Configuration;
 import lombok.Getter;
 

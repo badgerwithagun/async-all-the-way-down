@@ -29,6 +29,8 @@ public class DemoTest {
   @Test
   void test() throws InterruptedException {
     System.out.println(app.getLocalPort());
-    Thread.sleep(100000);
+    synchronized (this) {
+      this.wait();
+    }
   }
 }
