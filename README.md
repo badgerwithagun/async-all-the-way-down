@@ -3,9 +3,9 @@
 An opinionated, asynchronous, reactive Dropwizard microservice. Uses:
 
  - Asynchronous JAX-RS server via RX
+ - Asynchronous JAX-RS client via RX
  - Chunked responses via RX `Flowable`s
  - Asynchronous Postgres driver
- - Asynchronous JAX-RS client (TODO)
 
 How to try it out
 ---
@@ -16,6 +16,7 @@ How to try it out
 1. Once the test is up and running, call the following endpoints from your browser:
    1. `http://localhost:8081/demo/write` to write 100 records to the database, returning them to the browser immediately as they are written
    1. `http://localhost:8081/demo/read` to read the records back in the same way
+   1. `http://localhost:8081/demo/readhttp` to read the records back via the above endpoint via an HTTP client - again streaming in real time.
    1. `http://localhost:8081/demo/count` to read the record count
    1. `http://localhost:8081/demo/reset` to delete the records
 
