@@ -20,3 +20,7 @@ How to try it out
    1. `http://localhost:8080/demo/reset` to delete the records
 
 Note that responses are streamed back (deliberately slowed down to show chunked responses in progress) and don't block a server thread. The database I/O doesn't block a worker thread either - both use NIO, so you don't need a large thread pool to support high volume.
+
+It's all magic
+---
+Check out [the JAX-RS Resource](https://github.com/badgerwithagun/async-all-the-way-down/blob/master/src/main/java/com/gruelbox/asyncalltheway/DemoResource.java) - note that all this is achieved largely transparently as long as you write the endpoints using reactive logic.
