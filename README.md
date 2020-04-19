@@ -5,7 +5,7 @@ An opinionated, asynchronous, reactive Dropwizard microservice. Uses:
  - Asynchronous JAX-RS server via RX
  - Chunked responses via RX `Flowable`s
  - Asynchronous Postgres driver
- = Asynchronous JAX-RS client (TODO)
+ - Asynchronous JAX-RS client (TODO)
 
 How to try it out
 ---
