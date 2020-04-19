@@ -14,4 +14,5 @@ public interface StuffRepository {
   Single<Integer> update(Stuff stuff);
 
   Flowable<Stuff> selectAll();
+
 }

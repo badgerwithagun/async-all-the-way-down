@@ -2,10 +2,18 @@ package com.gruelbox.asyncalltheway;
 
 import com.gruelbox.asyncalltheway.domain.stuff.Stuff;
 import com.gruelbox.asyncalltheway.domain.stuff.StuffRepository;
+import com.gruelbox.asyncalltheway.integration.http.RxClient;
 import com.gruelbox.tools.dropwizard.guice.resources.WebResource;
+import io.netty.buffer.ByteBufAllocator;
+import io.netty.handler.stream.ChunkedInput;
+import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
+import java.io.InputStream;
+import java.util.List;
+import java.util.concurrent.CancellationException;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Stream;
 import javax.inject.Inject;
 import javax.inject.Provider;
 import javax.inject.Singleton;
@@ -13,9 +21,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.ProcessingException;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.InvocationCallback;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status.Family;
 import lombok.extern.slf4j.Slf4j;
 import net.winterly.rxjersey.server.rxjava2.Streamable;
 import com.gruelbox.asyncalltheway.integration.serialization.JacksonStreamWriter;
@@ -28,10 +43,14 @@ import com.gruelbox.asyncalltheway.integration.serialization.JacksonStreamWriter
 public class DemoResource implements WebResource {
 
   private final StuffRepository stuffRepository;
+  private final RxClient rxClient;
+  private final AsyncConfiguration configuration;
 
   @Inject
-  DemoResource(StuffRepository stuffRepository) {
+  DemoResource(StuffRepository stuffRepository, RxClient rxClient, AsyncConfiguration configuration) {
     this.stuffRepository = stuffRepository;
+    this.rxClient = rxClient;
+    this.configuration = configuration;
   }
 
   /**
@@ -95,6 +114,21 @@ public class DemoResource implements WebResource {
         .zipWith(Flowable.interval(100, TimeUnit.MILLISECONDS), (item, interval) -> item);
     log.info("Returning thread to Jetty");
     return result;
+  }
+
+  /**
+   * Asynchronously reads the records in the DB via a non-blocking HTTP client request
+   * to the endpoint above.
+   *
+   * @return The records as JSON.
+   */
+  @GET
+  @Path("/readhttp")
+  @Streamable(writer = JacksonStreamWriter.class)
+  public Flowable<Stuff> readViaHttp() {
+    return rxClient.getJsonArray(client ->
+        client.target("http://localhost:8081/demo/read").request().async(),
+        Stuff.class);
   }
 
 }

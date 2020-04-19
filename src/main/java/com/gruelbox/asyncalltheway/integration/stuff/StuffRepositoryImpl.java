@@ -2,6 +2,7 @@ package com.gruelbox.asyncalltheway.integration.stuff;
 
 import static com.gruelbox.asyncalltheway.integration.jooq.public_.tables.Stuff.STUFF;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gruelbox.asyncalltheway.domain.stuff.Stuff;
 import com.gruelbox.asyncalltheway.domain.stuff.StuffRepository;
 import com.gruelbox.asyncalltheway.integration.jooq.public_.tables.daos.StuffDao;
@@ -11,6 +12,7 @@ import io.reactivex.Single;
 import io.vertx.core.json.JsonArray;
 import io.vertx.reactivex.ext.asyncsql.AsyncSQLClient;
 import javax.inject.Inject;
+import javax.ws.rs.client.Client;
 import org.jooq.DSLContext;
 import org.jooq.SelectFinalStep;
 import org.jooq.impl.DSL;
@@ -20,12 +22,18 @@ class StuffRepositoryImpl implements StuffRepository {
   private final AsyncSQLClient sqlClient;
   private final DSLContext dsl;
   private final StuffDao stuffDao;
+  private final Client client;
+  private final ObjectMapper objectMapper;
 
   @Inject
-  StuffRepositoryImpl(AsyncSQLClient sqlClient, DSLContext dslContext, StuffDao stuffDao) {
+  StuffRepositoryImpl(AsyncSQLClient sqlClient,
+      DSLContext dslContext, StuffDao stuffDao,
+      Client client, ObjectMapper objectMapper) {
     this.sqlClient = sqlClient;
     this.dsl = dslContext;
     this.stuffDao = stuffDao;
+    this.client = client;
+    this.objectMapper = objectMapper;
   }
 
   @Override
@@ -71,7 +79,7 @@ class StuffRepositoryImpl implements StuffRepository {
   /**
    * TODO this should be generalised for a POJO and submitted to https://github.com/jklingsporn
    */
-  Flowable<com.gruelbox.asyncalltheway.integration.jooq.public_.tables.pojos.Stuff> queryStuff(
+  private Flowable<com.gruelbox.asyncalltheway.integration.jooq.public_.tables.pojos.Stuff> queryStuff(
       SelectFinalStep<?> sql) {
     return queryStream(sql)
         .map(jsonArray -> new com.gruelbox.asyncalltheway.integration.jooq.public_.tables.pojos.Stuff(
@@ -83,20 +91,20 @@ class StuffRepositoryImpl implements StuffRepository {
   /**
    * TODO this should be generalised for a POJO and submitted to https://github.com/jklingsporn
    */
-  Flowable<JsonArray> queryStream(SelectFinalStep<?> sql) {
-    return Flowable.create(emitter -> {
-      sqlClient.queryStream(sql.toString(), result -> {
-        if (result.failed()) {
-          emitter.onError(result.cause());
-          return;
-        }
-        emitter.setCancellable(result.result()::rxClose);
-        result.result()
-            .exceptionHandler(emitter::onError)
-            .endHandler(x -> emitter.onComplete())
-            .handler(emitter::onNext);
-      });
-    }, BackpressureStrategy.BUFFER);
+  private Flowable<JsonArray> queryStream(SelectFinalStep<?> sql) {
+    return Flowable.create(emitter ->
+        sqlClient.queryStream(sql.toString(), result -> {
+          if (result.failed()) {
+            emitter.onError(result.cause());
+            return;
+          }
+          emitter.setCancellable(result.result()::rxClose);
+          result.result()
+              .exceptionHandler(emitter::onError)
+              .endHandler(x -> emitter.onComplete())
+              .handler(emitter::onNext);
+        }),
+        BackpressureStrategy.BUFFER);
   }
 
 }

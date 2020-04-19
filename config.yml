@@ -1,10 +1,3 @@
-#jerseyClient:
-#  timeout: 10000ms                 # Max idle time
-#  connectionTimeout: 5000ms        # Max time to wait for a connection
-#  connectionRequestTimeout: 2000ms # Max time to wait for a connection from the pool
-#  gzipEnabledForRequests: false
-#  chunkedEncodingEnabled: false
-
 server:
   type: simple
   applicationContextPath: /
@@ -40,6 +33,10 @@ persistence:
   flyway:
     metaDataTableName: schema_version
     sqlMigrationSeparator: "_"
+
+jerseyClient:
+  gzipEnabledForRequests: false
+  chunkedEncodingEnabled: true
 
 logging:
   level: INFO
